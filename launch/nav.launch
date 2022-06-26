@@ -1,0 +1,16 @@
+<launch>
+    <rosparam param="/use_sim_time">true</rosparam>
+    <param name="ROS_IP" value="0.0.0.0"/>
+    <param name="ROC_TCP_PORT" value="10000" />
+    <param name="use_sim_time" value="true" />
+    <node name="server_endpoint" pkg="ros_tcp_endpoint" type="default_server_endpoint.py" args="--wait" output="screen" respawn="true" />
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find my_mobile_robot)/config/map.yaml" output="screen" />
+    <include file="$(find amcl)/examples/amcl_diff.launch" />
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" >
+    <rosparam file="$(find my_mobile_robot)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find my_mobile_robot)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find my_mobile_robot)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find my_mobile_robot)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find my_mobile_robot)/config/base_local_planner_params.yaml" command="load" />
+    </node>
+</launch>

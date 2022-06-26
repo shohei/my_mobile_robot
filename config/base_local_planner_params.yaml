@@ -1,0 +1,8 @@
+TrajectoryPlannerROS:
+  holonomic_robot: false
+  acc_lim_x: 5.0
+  acc_lim_theta: 6.0
+  max_vel_x: 10.0
+  min_vel_x: -10.0
+  max_vel_theta: 10.0
+  min_vel_theta: -10.0
