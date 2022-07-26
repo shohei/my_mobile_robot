@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot name="my_robot_arm">
+
+    <link name="world" />
+
+    <joint name="fixed" type="fixed">
+        <parent link="world" />
+        <child link="hand_base_link" />
+    </joint>
+
+    <link name="hand_base_link">
+        <visual>
+            <geometry>
+                <box size="0.06 2 0.5" />
+            </geometry>
+            <material name="white">
+                <color rgba="1.0 1.0 1.0 1.0" />
+            </material>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+    </link>
+
+    <joint name="joint_right" type="revolute">
+        <parent link="base_link" />
+        <child link="hand_right" />
+        <origin rpy="0 0 0" xyz="0 0.5 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-0.4" upper="0.5" effort="0.5293" velocity="6.159937255" />
+    </joint>
+
+    <joint name="joint_left" type="revolute">
+        <parent link="base_link" />
+        <child link="hand_left" />
+        <origin rpy="0 0 0" xyz="0 -0.5 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-0.4" upper="0.5" effort="0.5293" velocity="6.159937255" />
+    </joint>
+
+    <link name="hand_right">
+        <visual>
+            <geometry>
+                <cylinder length="1" radius="0.05" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 1.57 0" xyz="-0.5 0 0" />
+        </visual>
+    </link>
+
+    <link name="hand_left">
+        <visual>
+            <geometry>
+                <cylinder length="1" radius="0.05" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 1.57 0" xyz="-0.5 0 0" />
+        </visual>
+    </link>
+
+
+</robot>
